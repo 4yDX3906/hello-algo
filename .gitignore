@@ -3,13 +3,14 @@
 
 # Editor
 .vscode/
-.idea/
+**/.idea
 
 # mkdocs files
 .cache/
-scripts/
 docs/overrides/
 
 # build
 build/
 site/
+utils/
+**/cmake-build-debug

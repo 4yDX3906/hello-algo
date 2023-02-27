@@ -23,6 +23,8 @@ let package = Package(
         .executable(name: "linkedlist_queue", targets: ["linkedlist_queue"]),
         .executable(name: "array_queue", targets: ["array_queue"]),
         .executable(name: "deque", targets: ["deque"]),
+        .executable(name: "linkedlist_deque", targets: ["linkedlist_deque"]),
+        .executable(name: "array_deque", targets: ["array_deque"]),
         // chapter_hashing
         .executable(name: "hash_map", targets: ["hash_map"]),
         .executable(name: "array_hash_map", targets: ["array_hash_map"]),
@@ -37,6 +39,8 @@ let package = Package(
         // chapter_graph
         .executable(name: "graph_adjacency_matrix", targets: ["graph_adjacency_matrix"]),
         .executable(name: "graph_adjacency_list", targets: ["graph_adjacency_list"]),
+        .executable(name: "graph_bfs", targets: ["graph_bfs"]),
+        .executable(name: "graph_dfs", targets: ["graph_dfs"]),
         // chapter_searching
         .executable(name: "linear_search", targets: ["linear_search"]),
         .executable(name: "binary_search", targets: ["binary_search"]),
@@ -49,7 +53,9 @@ let package = Package(
         .executable(name: "radix_sort", targets: ["radix_sort"]),
     ],
     targets: [
+        // helper
         .target(name: "utils", path: "utils"),
+        .target(name: "graph_adjacency_list_target", dependencies: ["utils"], path: "chapter_graph", sources: ["graph_adjacency_list_target.swift"], swiftSettings: [.define("TARGET")]),
         // chapter_computational_complexity
         .executableTarget(name: "time_complexity", path: "chapter_computational_complexity", sources: ["time_complexity.swift"]),
         .executableTarget(name: "worst_best_time_complexity", path: "chapter_computational_complexity", sources: ["worst_best_time_complexity.swift"]),
@@ -68,6 +74,8 @@ let package = Package(
         .executableTarget(name: "linkedlist_queue", dependencies: ["utils"], path: "chapter_stack_and_queue", sources: ["linkedlist_queue.swift"]),
         .executableTarget(name: "array_queue", path: "chapter_stack_and_queue", sources: ["array_queue.swift"]),
         .executableTarget(name: "deque", path: "chapter_stack_and_queue", sources: ["deque.swift"]),
+        .executableTarget(name: "linkedlist_deque", path: "chapter_stack_and_queue", sources: ["linkedlist_deque.swift"]),
+        .executableTarget(name: "array_deque", path: "chapter_stack_and_queue", sources: ["array_deque.swift"]),
         // chapter_hashing
         .executableTarget(name: "hash_map", dependencies: ["utils"], path: "chapter_hashing", sources: ["hash_map.swift"]),
         .executableTarget(name: "array_hash_map", path: "chapter_hashing", sources: ["array_hash_map.swift"]),
@@ -82,6 +90,8 @@ let package = Package(
         // chapter_graph
         .executableTarget(name: "graph_adjacency_matrix", dependencies: ["utils"], path: "chapter_graph", sources: ["graph_adjacency_matrix.swift"]),
         .executableTarget(name: "graph_adjacency_list", dependencies: ["utils"], path: "chapter_graph", sources: ["graph_adjacency_list.swift"]),
+        .executableTarget(name: "graph_bfs", dependencies: ["utils", "graph_adjacency_list_target"], path: "chapter_graph", sources: ["graph_bfs.swift"]),
+        .executableTarget(name: "graph_dfs", dependencies: ["utils", "graph_adjacency_list_target"], path: "chapter_graph", sources: ["graph_dfs.swift"]),
         // chapter_searching
         .executableTarget(name: "linear_search", dependencies: ["utils"], path: "chapter_searching", sources: ["linear_search.swift"]),
         .executableTarget(name: "binary_search", path: "chapter_searching", sources: ["binary_search.swift"]),
